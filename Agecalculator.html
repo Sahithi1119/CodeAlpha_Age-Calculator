@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title> AGE CALCULATOR</title>
+        <link rel="stylesheet" type="text/css" href="Age.css">
+        </head>
+    <body>
+        <br><br>
+        <h1> Age calculator</h1>
+        <div class="container">
+       <label for="dob">Date of Birth:</label> 
+        <input type="date" id="dob" ><br><br>
+        <button onclick="calculateAge()"> Calculate Age</button>
+
+        <b><p id="result"></p></b>
+    </div>
+    </body>
+    <script>
+        function calculateAge()
+        {
+            var dobInput = document.getElementById('dob').value;
+            var dob=new Date(dobInput);
+            var today= new Date();
+            var ageYears=today.getFullYear() -dob.getFullYear();
+            var ageMonths = today.getMonth() - dob.getMonth();
+
+
+            if (dobInput === "") {
+                alert("Please enter your Date of Birth.");
+                return; 
+            }
+
+            if (dob > today) {
+                alert("The date of birth must be less than or equal to today's date.");
+                return;
+            }
+    
+            
+            if (today.getDate() < dob.getDate())
+            {
+                ageMonths --;
+            }
+
+            if (ageMonths < 0) {
+                ageMonths = 12 + ageMonths;
+                ageYears--;
+            }
+    
+
+            var resultElement = document.getElementById('result');
+            resultElement.innerText = "Your Age is " + ageYears +" years and "+ageMonths +" months.";
+        
+            
+        }
+
+
+    </script>
+</html>
